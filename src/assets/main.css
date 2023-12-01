@@ -6,6 +6,9 @@
   font-weight: normal;
 }
 
+.router-link-active {
+  color: red;
+}
 /* 
 #app {
   max-width: 1280px;
