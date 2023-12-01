@@ -1,9 +1,18 @@
-<script setup></script>
+<script setup>
+import { defineProps } from 'vue';
+
+defineProps({
+  movie: {
+    type: Object,
+    required: true
+  }
+})
+</script>
 
 <template>
-  <div class="item-card col-span-1">
+  <div class="item-card col-span-1 cursor-pointer">
     <img
-      src="https://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg"
+      :src="movie.Poster"
       alt="Poster"
       class="poster"
     />
@@ -13,8 +22,6 @@
 <style lang="scss" scoped>
 .item-card {
   display: flex;
-  background-color: #111;
-  color: #fff;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -22,6 +29,8 @@
 
   &:hover {
     transform: scale(1.05);
+    transform-origin: bottom;
+    transition: all 300ms ease-in-out allow-discrete;
   }
 }
 
