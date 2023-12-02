@@ -25,7 +25,11 @@ onMounted(async () => {
         await movieStore.fetchMovies()
         movies.value = cloneDeep(movieStore.movies)
         categories.value = movieStore.moviesCategories
-      } finally {
+      } 
+      catch(err) {
+        console.error(err)
+      }
+      finally {
         loading.value = false;
       }
 });
