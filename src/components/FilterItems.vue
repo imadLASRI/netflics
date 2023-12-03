@@ -18,7 +18,7 @@ const selectedCategory = ref('popular')
   <div class="flex items-center my-5">
     <span class="text-2xl">Filter by category: </span>
     <select
-      class="text-black text-xl ml-5 w-52 h-10 rounded-md"
+      class="text-black text-xl ml-5 w-52 h-10 rounded-md text-center"
       v-model="selectedCategory"
       @change="emit('categoryChanged', selectedCategory)"
     >
