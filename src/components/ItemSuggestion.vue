@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-  <div>items suggestion</div>
+  <div class="flex flex-col items-center pt-6">items suggestion</div>
 </template>
