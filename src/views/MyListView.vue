@@ -1,11 +1,17 @@
 <script setup>
+import { useMovieStore } from '../stores/movieStore'
 import ItemsList from '../components/ItemsList.vue'
+
+const movieStore = useMovieStore()
+const myList = movieStore.myMovieListServices.getMyList()
 
 </script>
 
 <template>
-  <h1>MyListView</h1>
-  <ItemsList />
+  <ItemsList
+    class="pt-4"
+    :movies="myList"
+  />
 </template>
 
 <style scoped></style>
