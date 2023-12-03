@@ -1,6 +1,8 @@
 <script setup>
 import { defineProps, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 import { useMovieStore } from '../stores/movieStore'
 
@@ -16,6 +18,12 @@ const movieStore = useMovieStore()
 
 let movieDetails = ref({})
 let existsInMyList = ref(false)
+
+const notify = (message) => {
+	toast.info(message, {
+		autoClose: 2000,
+	})
+}
 
 defineProps({
 	movie: {
@@ -43,15 +51,17 @@ function handleDetailsButtonClick(action) {
 	if(action === 'mylist' && movieStore.myMovieListServices.existsInMyList(movieDetails.value.id)){
 		movieStore.myMovieListServices.removeFromMyList(movieDetails.value.id)
 		existsInMyList.value = false
+		notify('The movie has been removed from your list')
 		return
 	}
 	if(action === 'mylist' && !movieStore.myMovieListServices.existsInMyList(movieDetails.value.id)){
 		movieStore.myMovieListServices.addToMyList(movieDetails.value)
 		existsInMyList.value = true
+		notify('The movie has been added to your list.')
 		return
 	}
 	if(action === 'play') {
-		console.log('OOoops')
+		notify('Calma... its not the real Netflix !')
 		return
 	}
 }
