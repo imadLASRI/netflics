@@ -34,14 +34,14 @@ function getMovieDetails(id) {
 	return movieStore.movies.find(movie => movie.id === id)
 }
 </script>
-// bg-[url(${movieDetails.Images?.at(0)})]
+
 <template>
 	<div :class="`relative w-full h-[500px] bg-black`">
 		<img :src="movieDetails.Images?.at(0)" class="object-cover object-top w-full h-[500px] block opacity-60"/>
 
 		<div class="absolute top-0 left-0 py-16 pl-10 drop-shadow-xl">
 			<h1 class="text-9xl mb-6">{{ movieDetails.Title }}</h1>
-			<h2 class="text-2xl block w-2/6">{{ movieDetails.Plot }}</h2>
+			<h2 class="text-2xl block w-3/6">{{ movieDetails.Plot }}</h2>
 			<div class="w-96 flex justify-evenly mt-10">
 				<ItemButton icon="play" />
 				<ItemButton icon="mylist" />
