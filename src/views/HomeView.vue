@@ -13,7 +13,7 @@ let movies = ref([])
 let categories = ref([])
 
 function handleCategoryChange(category) {
-  if(category === 'select') {
+  if(category === 'popular') {
     movies.value = cloneDeep(movieStore.movies)
   } else {
     movies.value = movieStore.movies.filter(movie => movie.Genre.includes(category))
