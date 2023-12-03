@@ -6,12 +6,16 @@ import { useMovieStore } from '../stores/movieStore'
 
 import ItemSuggestion from "./ItemSuggestion.vue";
 import ItemButton from "./ItemButton.vue";
+import PlayIcon from '../assets/icons/PlayIcon.vue'
+import PlusIcon from '../assets/icons/PlusIcon.vue'
+import DeleteIcon from '../assets/icons/DeleteIcon.vue'
 
 const route = useRoute()
 const router = useRouter()
 const movieStore = useMovieStore()
 
 let movieDetails = ref({})
+let existsInMyList = ref(false)
 
 defineProps({
 	movie: {
@@ -27,11 +31,29 @@ onMounted(() => {
 	}
 	else {
 		movieDetails.value = getMovieDetails(route.params.id)
+		existsInMyList.value = movieStore.myMovieListServices.existsInMyList(movieDetails.value.id)
 	}
 })
 
 function getMovieDetails(id) {
 	return movieStore.movies.find(movie => movie.id === id)
+}
+
+function handleDetailsButtonClick(action) {
+	if(action === 'mylist' && movieStore.myMovieListServices.existsInMyList(movieDetails.value.id)){
+		movieStore.myMovieListServices.removeFromMyList(movieDetails.value.id)
+		existsInMyList.value = false
+		return
+	}
+	if(action === 'mylist' && !movieStore.myMovieListServices.existsInMyList(movieDetails.value.id)){
+		movieStore.myMovieListServices.addToMyList(movieDetails.value)
+		existsInMyList.value = true
+		return
+	}
+	if(action === 'play') {
+		console.log('OOoops')
+		return
+	}
 }
 </script>
 
@@ -43,8 +65,19 @@ function getMovieDetails(id) {
 			<h1 class="text-9xl mb-6">{{ movieDetails.Title }}</h1>
 			<h2 class="text-2xl block w-3/6">{{ movieDetails.Plot }}</h2>
 			<div class="w-96 flex justify-evenly mt-10">
-				<ItemButton icon="play" />
-				<ItemButton icon="mylist" />
+				<ItemButton
+					action="play"
+					@click="handleDetailsButtonClick('play')"
+				>
+					<PlayIcon />
+				</ItemButton>
+				<ItemButton
+					action="mylist"
+					@click="handleDetailsButtonClick('mylist')"
+				>
+					<DeleteIcon v-if="existsInMyList"/>
+					<PlusIcon v-else/>
+				</ItemButton>
 			</div>
 		</div>
 	</div>
