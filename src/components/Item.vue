@@ -1,5 +1,7 @@
 <script setup>
-import { defineProps } from 'vue';
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 defineProps({
   movie: {
@@ -7,36 +9,19 @@ defineProps({
     required: true
   }
 })
+
+const openItemDetails = (id) => {
+  router.push(`/movie/${id}`)
+}
 </script>
 
 <template>
-  <div class="item-card col-span-1 cursor-pointer">
+  <div class="flex border-radius-8 overflow-hidden shadow-md transition-transform duration-200 ease-in-out hover:transform hover:scale-105 hover:transform-origin-bottom hover:transition-all hover:duration-300 hover:ease-in-out hover:allow-discrete col-span-1 cursor-pointer">
     <img
       :src="movie.Poster"
+      @click="openItemDetails(movie.id)"
       alt="Poster"
-      class="poster"
+      class="w-full h-auto rounded-l-8"
     />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.item-card {
-  display: flex;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.05);
-    transform-origin: bottom;
-    transition: all 300ms ease-in-out allow-discrete;
-  }
-}
-
-.poster {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px 0 0 8px;
-}
-</style>
