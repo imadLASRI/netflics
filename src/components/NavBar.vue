@@ -4,7 +4,7 @@ import SearchBar from './SearchBar.vue'
 </script>
 
 <template>
-  <div class="bg-black text-lg">
+  <div class="bg-gradient-to-b from-black via-black to-transparent text-lg">
     <nav class="flex justify-between items-center mx-10 text-white capitalize">
       <div class="flex items-center w-3/6 select-none">
         <RouterLink to="/" class="mr-10">
