@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
@@ -25,11 +25,9 @@ const notify = (message) => {
 	})
 }
 
-defineProps({
-	movie: {
-		type: Object,
-		required: true
-	}
+router.beforeEach((to) => {
+	if (to.name === "movieDetails")
+  		movieDetails.value = getMovieDetails(to.params.id)
 })
 
 onMounted(() => {
@@ -43,11 +41,11 @@ onMounted(() => {
 	}
 })
 
-function getMovieDetails(id) {
+const getMovieDetails = (id) => {
 	return movieStore.movies.find(movie => movie.id === id)
 }
 
-function handleDetailsButtonClick(action) {
+const handleDetailsButtonClick = (action) => {
 	if(action === 'mylist' && movieStore.myMovieListServices.existsInMyList(movieDetails.value.id)){
 		movieStore.myMovieListServices.removeFromMyList(movieDetails.value.id)
 		existsInMyList.value = false
@@ -69,7 +67,7 @@ function handleDetailsButtonClick(action) {
 
 <template>
 	<div :class="`relative w-full h-[500px] bg-black`">
-		<img :src="movieDetails.Images?.at(0)" class="object-cover object-top w-full h-[500px] block opacity-60"/>
+		<img :src="movieDetails?.Images?.at(0)" class="object-cover object-top w-full h-[500px] block opacity-60"/>
 
 		<div class="absolute top-0 left-0 py-16 pl-10 drop-shadow-xl select-none">
 			<h1 class="text-9xl mb-6">{{ movieDetails.Title }}</h1>
