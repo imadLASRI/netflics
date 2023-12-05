@@ -80,9 +80,9 @@ const handleDetailsButtonClick = (action) => {
       class="object-cover object-top w-full h-[500px] block opacity-60"
     />
 
-    <div class="absolute top-0 left-0 py-16 pl-10 drop-shadow-xl select-none">
-      <h1 class="text-9xl mb-6">{{ movieDetails.Title }}</h1>
-      <h2 class="text-2xl block w-3/6">{{ movieDetails.Plot }}</h2>
+    <div class="absolute top-0 left-0 py-16 pl-2 lg:pl-10 drop-shadow-xl select-none">
+      <h1 class="text-2xl lg:text-9xl mb-6">{{ movieDetails.Title }}</h1>
+      <h2 class="text-xl lg:text-2xl block w-full lg:w-3/6">{{ movieDetails.Plot }}</h2>
       <div class="w-96 flex justify-evenly mt-10">
         <ItemButton action="play" @click="handleDetailsButtonClick('play')">
           <PlayIcon />
