@@ -30,8 +30,9 @@ const notify = (message) => {
 
 router.beforeEach((to) => {
   if (to.name === 'movieDetails') {
-	movieDetails.value = getMovieDetails(to.params.id)
+	  movieDetails.value = getMovieDetails(to.params.id)
   	movieSuggestion.value = randomSuggestion(movieStore.movies, movieDetails.value, {pick: movieSuggestionNumber.value})
+    existsInMyList.value = movieStore.myMovieListServices.existsInMyList(to.params.id)
   }
 })
 
