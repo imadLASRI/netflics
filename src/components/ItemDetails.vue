@@ -22,6 +22,11 @@ let existsInMyList = ref(false)
 let movieSuggestion = ref([])
 let movieSuggestionNumber = ref(3)
 
+const ACTIONS = {
+  PLAY: 'play',
+  MYLIST: 'mylist'
+}
+
 const notify = (message) => {
   toast.info(message, {
     autoClose: 2000
@@ -52,14 +57,14 @@ const getMovieDetails = (id) => {
 }
 
 const handleDetailsButtonClick = (action) => {
-  if (action === 'mylist' && movieStore.myMovieListServices.existsInMyList(movieDetails.value.id)) {
+  if (action === ACTIONS.MYLIST && movieStore.myMovieListServices.existsInMyList(movieDetails.value.id)) {
     movieStore.myMovieListServices.removeFromMyList(movieDetails.value.id)
     existsInMyList.value = false
     notify('The movie has been removed from your list')
     return
   }
   if (
-    action === 'mylist' &&
+    action === ACTIONS.MYLIST &&
     !movieStore.myMovieListServices.existsInMyList(movieDetails.value.id)
   ) {
     movieStore.myMovieListServices.addToMyList(movieDetails.value)
@@ -67,7 +72,7 @@ const handleDetailsButtonClick = (action) => {
     notify('The movie has been added to your list.')
     return
   }
-  if (action === 'play') {
+  if (action === ACTIONS.PLAY) {
     notify('Calma... its not the real Netflix !')
     return
   }
@@ -85,10 +90,10 @@ const handleDetailsButtonClick = (action) => {
       <h1 class="text-2xl lg:text-9xl mb-6">{{ movieDetails.Title }}</h1>
       <h2 class="text-xl lg:text-2xl block w-full lg:w-3/6">{{ movieDetails.Plot }}</h2>
       <div class="w-96 flex justify-evenly mt-10">
-        <ItemButton action="play" @click="handleDetailsButtonClick('play')">
+        <ItemButton :action="ACTIONS.PLAY" @click="handleDetailsButtonClick(ACTIONS.PLAY)">
           <PlayIcon />
         </ItemButton>
-        <ItemButton action="mylist" @click="handleDetailsButtonClick('mylist')">
+        <ItemButton :action="ACTIONS.MYLIST" @click="handleDetailsButtonClick(ACTIONS.MYLIST)">
           <DeleteIcon v-if="existsInMyList" />
           <PlusIcon v-else />
         </ItemButton>
