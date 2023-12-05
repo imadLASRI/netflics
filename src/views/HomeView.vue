@@ -47,9 +47,3 @@ onMounted(async () => {
     <ItemsList :movies="movies"/>
   </template>
 </template>
-
-<style scoped>
-/* TODO: mobile  */
-@media (max-width: 400px) {
-}
-</style>

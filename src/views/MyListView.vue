@@ -9,9 +9,14 @@ const myList = movieStore.myMovieListServices.getMyList()
 
 <template>
   <ItemsList
+    v-if="myList.length"
     class="pt-4"
     :movies="myList"
   />
+  <h2
+    v-else
+    class="text-center text-lg lg:text-2xl"
+  >
+    Nothing here yet...
+  </h2>
 </template>
-
-<style scoped></style>

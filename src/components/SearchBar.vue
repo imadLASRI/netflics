@@ -36,7 +36,7 @@ const goToMovieDetails = (id) => {
     <input
       v-model="searchQuery"
       @input="handleSearch"
-      class="w-full p-2 border-none rounded-md text-base bg-gray-800 text-white"
+      class="w-full p-2 border-none rounded-md bg-gray-800 text-white"
       type="text"
       placeholder="Search for movies..."
     />

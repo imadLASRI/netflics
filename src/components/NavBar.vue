@@ -20,5 +20,3 @@ import SearchBar from './SearchBar.vue'
     </nav>
   </div>
 </template>
-
-<style scoped></style>
