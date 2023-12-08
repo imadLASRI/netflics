@@ -101,5 +101,5 @@ const handleDetailsButtonClick = (action) => {
     </div>
   </div>
 
-  <ItemSuggestion :suggestion="movieSuggestion" :ammount="movieSuggestionNumber"/>
+  <ItemSuggestion :suggestion="movieSuggestion" :amount="movieSuggestionNumber"/>
 </template>
