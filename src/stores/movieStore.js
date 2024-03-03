@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
-import { MovieListServicesManager } from '../services/MovieListServices'
+import MovieListServices from '../services/MovieListServices'
 
 export const useMovieStore = defineStore('movie', {
   state: () => ({
     movies: {},
-    myMovieListServices: MovieListServicesManager.getInstance()
+    myMovieListServices: MovieListServices.getInstance()
   }),
   getters: {
     moviesCategories(state) {

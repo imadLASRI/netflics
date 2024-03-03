@@ -1,4 +1,4 @@
-export const MovieListServicesManager = (() => {
+export default (() => {
   let instance
 
   const createInstance = () => {
