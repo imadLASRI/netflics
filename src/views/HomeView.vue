@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { cloneDeep } from "lodash"
 
@@ -25,7 +25,7 @@ onMounted(async () => {
         await movieStore.fetchMovies()
         movies.value = cloneDeep(movieStore.movies)
         categories.value = movieStore.moviesCategories
-      } 
+      }
       catch(err) {
         console.error(err)
       }
@@ -42,7 +42,7 @@ onMounted(async () => {
   >
     Loading...
   </span>
-  <template v-else>  
+  <template v-else>
     <FilterItems :categories="categories" @category-changed="handleCategoryChange"/>
     <ItemsList :movies="movies"/>
   </template>

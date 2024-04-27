@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { useMovieStore } from '../stores/movieStore'
 import ItemsList from '../components/ItemsList.vue'
 

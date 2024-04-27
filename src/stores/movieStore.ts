@@ -1,13 +1,14 @@
 import { defineStore } from 'pinia'
 import MovieListServices from '../services/MovieListServices'
+import { MovieStoreState } from '../types/stores.ts'
 
 export const useMovieStore = defineStore('movie', {
-  state: () => ({
-    movies: {},
+  state: (): MovieStoreState => ({
+    movies: [],
     myMovieListServices: MovieListServices.getInstance()
   }),
   getters: {
-    moviesCategories(state) {
+    moviesCategories(state): Set<string> {
       const allMoviesGenres = state.movies.map((movie) => movie.Genre).join(', ')
       const distinctMoviesGenres = new Set(allMoviesGenres.split(', '))
 
@@ -15,9 +16,9 @@ export const useMovieStore = defineStore('movie', {
     }
   },
   actions: {
-    async fetchMovies() {
+    async fetchMovies(): Promise<void> {
       try {
-        const response = await fetch('http://localhost:3000/movies')
+        const response = await fetch(`${import.meta.env.VITE_LOCAL_BASE_URL}/movies`)
         const data = await response.json()
         this.movies = data
       } catch (err) {

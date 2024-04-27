@@ -1,16 +1,8 @@
-<script setup>
-import Item from './Item.vue'
+<script lang="ts" setup>
+  import Item from './Item.vue'
+  import { ItemSuggestionProps } from '../types/components.ts'
 
-defineProps({
-  suggestion: {
-    type: Object,
-    required: true
-  },
-  amount: {
-    type: Number,
-    required: true
-  }
-})
+  defineProps<ItemSuggestionProps>()
 </script>
 
 <template>

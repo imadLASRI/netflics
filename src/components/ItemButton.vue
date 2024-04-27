@@ -1,10 +1,7 @@
-<script setup>
-defineProps({
-	action: {
-		type: String,
-		required: true
-	}
-})
+<script lang="ts" setup>
+  import { ItemButtonProps } from '../types/components.ts'
+
+  defineProps<ItemButtonProps>()
 </script>
 
 <template>

@@ -1,17 +1,11 @@
-<script setup>
-import { ref } from 'vue'
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { FilterItemsProps } from '../types/components.ts'
 
-defineProps({
-  categories: {
-    type: Object,
-    required: true
-  }
-})
+  defineProps<FilterItemsProps>()
 
-const emit = defineEmits(['categoryChanged'])
-
-const selectedCategory = ref('popular')
-
+  const emit = defineEmits(['categoryChanged'])
+  const selectedCategory = ref<string>('popular')
 </script>
 
 <template>

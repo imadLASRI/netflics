@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { RouterLink } from 'vue-router'
 import SearchBar from './SearchBar.vue'
 </script>

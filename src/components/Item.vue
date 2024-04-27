@@ -1,18 +1,14 @@
-<script setup>
-import { useRouter } from 'vue-router'
+<script lang="ts" setup>
+  import { useRouter } from 'vue-router'
+  import { ItemProps } from '../types/components.ts'
 
-const router = useRouter()
+  defineProps<ItemProps>()
 
-defineProps({
-  movie: {
-    type: Object,
-    required: true
+  const router = useRouter()
+
+  const openItemDetails = (id: string | number) => {
+    router.push(`/movie/${id}`)
   }
-})
-
-const openItemDetails = (id) => {
-  router.push(`/movie/${id}`)
-}
 </script>
 
 <template>

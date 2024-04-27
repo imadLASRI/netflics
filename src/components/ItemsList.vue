@@ -1,12 +1,8 @@
-<script setup>
-import Item from './Item.vue'
+<script lang="ts" setup>
+  import Item from './Item.vue'
+  import { ItemsListProps } from '../types/components.ts'
 
-defineProps({
-  movies: {
-    type: Object,
-    required: true
-  }
-})
+  defineProps<ItemsListProps>()
 </script>
 
 <template>

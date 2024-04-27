@@ -1,14 +1,15 @@
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useMovieStore } from '../stores/movieStore'
+import { Movie } from '../types/components.ts'
 
 const router = useRouter()
 const route = useRoute()
 
-const searchData = useMovieStore()
-const searchQuery = ref('')
-const searchResults = ref([])
+const searchData: Record<string, any> = useMovieStore()
+const searchQuery: string = ref('')
+const searchResults: Movie[] = ref([])
 
 const handleSearch = () => {
   let moviesList = []
@@ -20,7 +21,7 @@ const handleSearch = () => {
   }
 
   searchResults.value = moviesList.filter(movie =>
-    movie.Title.toLowerCase().includes(searchQuery.value.toLowerCase()) || 
+    movie.Title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
     movie.Plot.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
 }
