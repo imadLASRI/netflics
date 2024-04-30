@@ -1,35 +1,36 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useMovieStore } from '../stores/movieStore'
-import { Movie } from '../types/components.ts'
+  import { ref } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
+  import { useMovieStore } from '../stores/movieStore'
+  import { Movie } from '../types/components.ts'
 
-const router = useRouter()
-const route = useRoute()
+  const router = useRouter()
+  const route = useRoute()
 
-const searchData: Record<string, any> = useMovieStore()
-const searchQuery: string = ref('')
-const searchResults: Movie[] = ref([])
+  const searchData: Record<string, any> = useMovieStore()
+  const searchQuery: string = ref('')
+  const searchResults: Movie[] = ref([])
 
-const handleSearch = () => {
-  let moviesList = []
+  const handleSearch = () => {
+    let moviesList = []
 
-  if(route.name === 'mylist') {
-    moviesList = searchData.myMovieListServices.getMyList()
-  } else {
-    moviesList = searchData.movies
+    if (route.name === 'mylist') {
+      moviesList = searchData.myMovieListServices.getMyList()
+    } else {
+      moviesList = searchData.movies
+    }
+
+    searchResults.value = moviesList.filter(
+      (movie) =>
+        movie.Title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        movie.Plot.toLowerCase().includes(searchQuery.value.toLowerCase())
+    )
   }
 
-  searchResults.value = moviesList.filter(movie =>
-    movie.Title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-    movie.Plot.toLowerCase().includes(searchQuery.value.toLowerCase())
-  )
-}
-
-const goToMovieDetails = (id) => {
-  router.push(`/movie/${id}`)
-  searchQuery.value = ''
-}
+  const goToMovieDetails = (id) => {
+    router.push(`/movie/${id}`)
+    searchQuery.value = ''
+  }
 </script>
 
 <template>

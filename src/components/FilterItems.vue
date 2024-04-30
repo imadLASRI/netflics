@@ -17,12 +17,7 @@
       @change="emit('categoryChanged', selectedCategory)"
     >
       <option value="popular" class="text-gray-400">Popular</option>
-      <option
-        class="text-white"
-        v-for="category in categories"
-        :value="category"
-        :key="category"
-      >
+      <option class="text-white" v-for="category in categories" :value="category" :key="category">
         {{ category }}
       </option>
     </select>

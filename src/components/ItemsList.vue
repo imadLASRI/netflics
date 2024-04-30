@@ -7,9 +7,6 @@
 
 <template>
   <div class="grid grid-cols-2 lg:grid-cols-7 gap-4">
-    <Item v-for="item in movies"
-      :key="item.id"
-      :movie="item"
-    />
+    <Item v-for="item in movies" :key="item.id" :movie="item" />
   </div>
 </template>

@@ -22,7 +22,7 @@
 
   const ACTIONS = {
     PLAY: 'play',
-    MYLIST: 'mylist',
+    MYLIST: 'mylist'
   }
 
   const route = useRoute()
@@ -36,14 +36,16 @@
 
   const notify = (message: string) => {
     toast.info(message, {
-      autoClose: 2000,
+      autoClose: 2000
     })
   }
 
   router.beforeEach((to) => {
     if (to.name === 'movieDetails') {
       movieDetails.value = getMovieDetails(to.params.id)
-      movieSuggestion.value = randomSuggestion(movieStore.movies, movieDetails.value, { pick: movieSuggestionNumber.value })
+      movieSuggestion.value = randomSuggestion(movieStore.movies, movieDetails.value, {
+        pick: movieSuggestionNumber.value
+      })
       isInMyList.value = movieStore.myMovieListServices.isInMyList(to.params.id)
       window.scrollTo(0, 0)
     }
@@ -56,7 +58,9 @@
     } else {
       movieDetails.value = getMovieDetails(route.params.id)
       isInMyList.value = movieStore.myMovieListServices.isInMyList(movieDetails.value.id)
-      movieSuggestion.value = randomSuggestion(movieStore.movies, movieDetails.value, { pick: movieSuggestionNumber.value })
+      movieSuggestion.value = randomSuggestion(movieStore.movies, movieDetails.value, {
+        pick: movieSuggestionNumber.value
+      })
     }
   })
 
@@ -65,13 +69,19 @@
   }
 
   const handleDetailsButtonClick = (action: string) => {
-    if (action === ACTIONS.MYLIST && movieStore.myMovieListServices.isInMyList(movieDetails.value.id)) {
+    if (
+      action === ACTIONS.MYLIST &&
+      movieStore.myMovieListServices.isInMyList(movieDetails.value.id)
+    ) {
       movieStore.myMovieListServices.removeFromMyList(movieDetails.value.id)
       isInMyList.value = false
       notify('The movie has been removed from your list')
       return
     }
-    if (action === ACTIONS.MYLIST && !movieStore.myMovieListServices.isInMyList(movieDetails.value.id)) {
+    if (
+      action === ACTIONS.MYLIST &&
+      !movieStore.myMovieListServices.isInMyList(movieDetails.value.id)
+    ) {
       movieStore.myMovieListServices.addToMyList(movieDetails.value)
       isInMyList.value = true
       notify('The movie has been added to your list.')
@@ -106,5 +116,5 @@
     </div>
   </div>
 
-  <ItemSuggestion :suggestion="movieSuggestion" :amount="movieSuggestionNumber"/>
+  <ItemSuggestion :suggestion="movieSuggestion" :amount="movieSuggestionNumber" />
 </template>
