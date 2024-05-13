@@ -1,3 +1,10 @@
+// // src/shims-vue.d.ts
+// declare module '*.vue' {
+//   import type { DefineComponent } from 'vue'
+//   const component: DefineComponent<{}, {}, any>
+//   export default component
+// }
+
 // shims-vue.d.ts
 
 // Import the DefineComponent type from Vue

@@ -4,34 +4,20 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "no-infer": true,
     "jsx": "preserve",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true,
-    "types": ["node", "jest", "webpack-env"],
+    "types": ["node", "jest"],
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*" // set path `@/*` as alias of `src/*`
-      ]
+      "@/components/*": ["src/components/*"],
+      "@/utils/*": ["src/utils/*"]
     }
   },
-  // "include": [
-  //   "src/**/*.ts",
-  //   "src/**/*.tsx",
-  //   "tests/**/*.ts",
-  //   "tests/**/*.tsx",
-  //   "typings/**/*.d.ts"
-  // ],
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "src/components/*.vue"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts"],
   "exclude": ["node_modules"]
 }
